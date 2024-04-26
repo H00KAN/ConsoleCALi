@@ -8,6 +8,20 @@ namespace ConsoleCALi
 {
     class Program
     {
+
+        public interface ICalculator
+        {
+            double add(double a, double b);
+            double subtract(double a, double b);
+            double multiply(double a, double b);
+            double divide(double a, double b);
+        }
+
+        public class addCalculator : ICalculator
+        {
+            public double add(double a, double b) => a + b;
+        }
+
         char MainMenu()
         {
             while (true)
@@ -44,6 +58,7 @@ namespace ConsoleCALi
 
         public int Logika () 
         {
+            double result = 0;
             char choice = (char)0;
 
             while (choice != '9') 
@@ -52,12 +67,11 @@ namespace ConsoleCALi
                 switch (choice)
                 {
                     case '1':
-                        
+                        Console.Clear();
                         Console.WriteLine("Введите 2 числа");
-                        int a = int.Parse(Console.ReadLine());
-                        int b = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Ответ - " + (a*b));
-                        Console.ReadLine();
+                        double a = double.Parse(Console.ReadLine());
+                        double b = double.Parse(Console.ReadLine());
+                        result = ((ICalculator)addCalculator).add(a, b);
                         break;
                     case '2':
                         Console.Clear();
